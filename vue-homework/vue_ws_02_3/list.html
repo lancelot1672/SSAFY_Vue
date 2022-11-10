@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="header">
+      <a href="index.html"> <img src="./img/ssafy_logo.png" id="ssafy_logo" /></a>
+      <p class="logo">도서목록</p>
+    </div>
+    <div id="app">
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>ISBN</th>
+            <th>제목</th>
+            <th>저자</th>
+            <th>가격</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(book) in books">
+            <td>{{book.bno}}</td>
+            <td>{{book.isbn}}</td>
+            <td><a href="./view.html">{{book.title}}</a></td>
+            <td>{{book.writer}}</td>
+            <td>{{book.price}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          books: [
+            {
+              bno: 1,
+              isbn: "111-222-7777",
+              title: "스프링 재미있나요?",
+              writer: "안효인",
+              price: "35,000원",
+            },
+            {
+              bno: 2,
+              isbn: "111-333-1234",
+              title: "자바 프로그래밍",
+              writer: "최싸피",
+              price: "27,000원",
+            },
+            {
+              bno: 3,
+              isbn: "111-222-7778",
+              title: "VUEJS 정복하기",
+              writer: "김싸피",
+              price: "25,000원",
+            },
+            {
+              bno: 4,
+              isbn: "111-222-7779",
+              title: "알고리즘 어렵지 않아요~",
+              writer: "박싸피",
+              price: "23,500원",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

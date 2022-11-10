@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header-nav></header-nav>
+      <!-- <book-list v-on:hey="why"></book-list> -->
+      <!-- : -> v-bind 생략 - Vue 객체에 있는 것 사용하기 -->
+      <!-- <book-view :money="isbn"></book-view> -->
+      <book-list :cup="bus"></book-list>
+      <book-view :cup="bus"></book-view>
+    </div>
+
+    <script type="module">
+      import HeaderNav from "./components/HeaderNav.js";
+      import BookList from "./components/BookList.js";
+      import BookView from "./components/BookView.js";
+      const bus = new Vue();
+      new Vue({
+        el: "#app",
+        components: { HeaderNav, BookList, BookView },
+        data: { isbn: "", bus: bus },
+        methods: {
+          why(receive) {
+            console.log("내 자식 BookList가 나한테 mom하면서 보낸 데이터:" + receive);
+            this.isbn = receive;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

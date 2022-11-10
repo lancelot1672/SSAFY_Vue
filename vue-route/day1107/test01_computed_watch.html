@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" name="" id="" placeholder="First Name" v-model="firstName" />
+      <input type="text" name="" id="" placeholder="Last Name" v-model="lastName" />
+      <!-- <div>Full Name : <span v-html="fullName"></div> -->
+      <div v-html="`Full Name : ${fullName}`"></div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          return {
+            firstName: "",
+            lastName: "",
+            keyword: "", // 현재 사용자가 입력하고 있는 검색어
+          };
+        },
+        // 저장된 데이터를 통해 연산을 해
+        // 변수가 있는 것 처럼 만들어줌.
+
+        computed: {
+          fullName() {
+            // 수동적인 데이터임. 어떤 data가 변경디면 그걸 자료로 자동 계산되어지는 형태일 때 씀
+            //함수처럼 생겼지만 가져다 쓸 때는 data 변수인 것 처럼 가져다 쓰는 특징!
+            return `<h2>` + this.firstName + this.lastName + `</h2>`;
+          },
+          // 예를 들면 아래처럼 검색 키워드가 변경되면 화변에 뿌릴 글 데이터를 얻어오면 됨.
+          // 어딘가에 저장해놓고 추후 가공해서 쓰려면 data에 저장
+          // 그게 아니면 그냥 이렇게 computed해서 계산된 데이터를 바로바로 쓰면 됨.
+          // return  필수.
+          // 명시적ㅇ로 호출하지 않는다.
+          async boards() {
+            let resp = await fetch("" + this.keyword);
+            let data = await resp.json();
+            return data;
+          },
+        },
+        // lastName을 계속 지켜봐~ lastName이 변경되면 실행
+        watch: {
+          lastName() {
+            console.log("헤헤헷~");
+          },
+          // data에 있는 항목을 능동적으로 겁나 지켜봄.
+          // 해당 data가 변경되었을 때 하고자 하는 행동을 적으면 됨.
+          // return 자유
+          // 명시적으로 호출하지 않음. keyword 값이 변경될 때마다 자동으로 호출됨.
+          // ssafy라고 입력하면 5번 호출되는 거임..............
+          keyword() {
+            console.log("검색어는 두 글자 이상 엽력하셔야 합니다.");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

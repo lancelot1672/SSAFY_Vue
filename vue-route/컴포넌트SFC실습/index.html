@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- HeaderNav 컴포넌트가 보여질 위치가 이곳이다! kebab 표기법으로 사용 가능 -->
+      <header-nav></header-nav>
+      <book-main></book-main>
+    </div>
+    <script type="module">
+      // SFC(Single File Component) :: 하나의 조각이 하나의 js 파일
+      import HeaderNav from "./components/HeaderNav.js";
+      import BookMain from "./components/BookMain.js";
+
+      new Vue({
+        el: "#app",
+        components: {
+          HeaderNav, // 현재 인스턴스의 조각 컴포넌트
+          BookMain,
+        },
+      });
+    </script>
+  </body>
+</html>
